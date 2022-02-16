@@ -8,20 +8,25 @@ namespace Frazioni_Esame
 {
     public class Frazione
     {
-        public int Numeratore { get; set; }
+        public int Numeratore { get; }
 
-        public int Denominatore { get; set; }
+        public int Denominatore { get; }
 
         //public double Value { get; set; }
 
-        public Frazione()
+        protected Frazione()
         {
             Numeratore = 0;
             Denominatore = 1;
             //Value = this.Numeratore / this.Denominatore;
         }
 
-        public Frazione(int numeratore, int denominatore)
+        public static Frazione Zero()
+        {
+            return new Frazione();
+        }
+
+        public Frazione(int numeratore, int denominatore = 1)
         {
             this.Numeratore = numeratore;
             this.Denominatore = denominatore;
@@ -30,7 +35,9 @@ namespace Frazioni_Esame
 
         public override string ToString()
         {
-            return Numeratore + "/" + Denominatore;
+            return Denominatore == 1
+                ? $"{Numeratore}"
+                : $"{Numeratore}/{Denominatore}";
         }
 
         public static Frazione Addizione(Frazione f1, Frazione f2)
